@@ -1,0 +1,14 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "dotenv -e ./dotenv/.env.dev -- node server.mjs"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv-cli": "^7.4.2",
+    "express": "^4.19.2"
+  }
+}
