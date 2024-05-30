@@ -10,6 +10,7 @@
   "dependencies": {
     "dotenv-cli": "^7.4.2",
     "express": "^4.19.2",
-    "lowdb": "^7.0.1"
+    "lowdb": "^7.0.1",
+    "shortid": "^2.2.16"
   }
 }

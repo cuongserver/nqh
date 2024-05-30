@@ -1,20 +1,16 @@
+//@ts-check
 import express from "express";
 import { createRequire } from "module";
-import { JSONFilePreset } from "lowdb/node";
 
-import todoRouter from "./routes/todo.mjs";
+import todoRouter from "./routes/task.mjs";
 
 const require = createRequire(import.meta.url);
+const staticDir = process.env.STATIC_DIR || "./fe-dist";
 
 const server = express();
-server.use(express.static(process.env.STATIC_DIR));
+server.use(express.static(staticDir));
 
-const db = await JSONFilePreset(`${process.env.DATA_DIR}/db.json`, {
-  todos: [],
-});
-db.write();
-
-const manifest = require(`${process.env.STATIC_DIR}/manifest.json`);
+const manifest = require(`${staticDir}/manifest.json`);
 
 server.use(todoRouter);
 

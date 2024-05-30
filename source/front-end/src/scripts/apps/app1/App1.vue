@@ -1,6 +1,7 @@
 <template>
   <div @click="handleClick">App1</div>
-  <div class="dropdown" v-for="(item, index) in list">
+  <button @click="handleClick2">ABC</button>
+  <!-- <div class="dropdown" v-for="(item, index) in tasks">
     <button
       class="btn btn-secondary dropdown-toggle"
       type="button"
@@ -15,24 +16,41 @@
       <li><a class="dropdown-item" href="#">Another action</a></li>
       <li><a class="dropdown-item" href="#">Something else here</a></li>
     </ul>
-  </div>
+  </div> -->
+  <Table>
+    <div></div>
+    <div></div>
+    <div></div>
+  </Table>
+  {{ tasks }}
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
 import "bootstrap";
+import { createTask } from "@scripts/common/utils/api";
+import { mapActions, mapGetters } from "vuex";
+import Table from "@scripts/common/components/Table.vue";
 
 export default defineComponent({
+  components: { Table },
+
   data() {
     return {
       list: [] as number[],
     };
   },
-  mounted() {
-    console.log("App1");
+  computed: {
+    ...mapGetters("taskStoreModule", ["tasks", "currentTask"]),
   },
   methods: {
-    handleClick() {
-      this.list.push(1);
+    ...mapActions("taskStoreModule", ["getTasks"]),
+    async handleClick() {
+      const response = await createTask({
+        desc: "AVC",
+      });
+    },
+    handleClick2() {
+      this.getTasks([]);
     },
   },
 });
