@@ -1,15 +1,20 @@
-import expesss from "express";
-import path from "path";
+//@ts-check
+import express from "express";
 import { createRequire } from "module";
 
+import todoRouter from "./routes/task.mjs";
+
 const require = createRequire(import.meta.url);
+const staticDir = process.env.STATIC_DIR || "./fe-dist";
 
-const server = expesss();
-server.use(expesss.static(path.resolve(process.env.STATIC_DIR)));
+const server = express();
+server.use(express.static(staticDir));
 
-const manifest = require(`${process.env.STATIC_DIR}/manifest.json`);
+const manifest = require(`${staticDir}/manifest.json`);
 
-server.get("/", async (_req, res) => {
+server.use(todoRouter);
+
+server.get("/*", async (_req, res) => {
   res.send(`
     <!DOCTYPE html>
     <html>

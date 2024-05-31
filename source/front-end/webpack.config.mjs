@@ -3,6 +3,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import path from "path";
 import { VueLoaderPlugin } from "vue-loader";
 import { WebpackManifestPlugin } from "webpack-manifest-plugin";
+// @ts-ignore
 import BuildHashPlugin from "build-hash-webpack-plugin";
 
 /**
@@ -53,6 +54,7 @@ const config = (_env) => {
         "@assets": path.resolve(__dirname, "src", "assets"),
         "@styles": path.resolve(__dirname, "src", "styles"),
       },
+      extensions: [".ts", ".vue"],
     },
     module: {
       rules: [
@@ -104,7 +106,7 @@ const config = (_env) => {
         },
         {
           exclude: [tsFileRegex, sassFileRegex, vueFileRegex, /node_modules/],
-          type: "asset/resource",
+          type: "asset",
         },
       ],
     },

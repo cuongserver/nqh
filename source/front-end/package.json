@@ -3,14 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "serve": "dotenv -e ./dotenv/.env -- webpack watch"
+    "serve": "dotenv -e ./dotenv/.env -- webpack watch",
+    "build": "vue-tsc --noEmit && dotenv -e ./dotenv/.env.prod -- webpack"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "vue": "^3.4.21"
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.2",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.2.10",
     "build-hash-webpack-plugin": "^1.0.4",
     "concurrently": "^8.2.2",
     "css-loader": "^6.10.0",
