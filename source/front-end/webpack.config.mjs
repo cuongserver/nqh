@@ -106,7 +106,7 @@ const config = (_env) => {
         },
         {
           exclude: [tsFileRegex, sassFileRegex, vueFileRegex, /node_modules/],
-          type: "asset/resource",
+          type: "asset",
         },
       ],
     },

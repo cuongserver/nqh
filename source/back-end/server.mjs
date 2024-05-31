@@ -14,7 +14,7 @@ const manifest = require(`${staticDir}/manifest.json`);
 
 server.use(todoRouter);
 
-server.get("/", async (_req, res) => {
+server.get("/*", async (_req, res) => {
   res.send(`
     <!DOCTYPE html>
     <html>
