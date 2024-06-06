@@ -23,5 +23,6 @@ export default defineComponent({
 
 #app {
   min-height: 100vh;
+  font-family: "Beausite-Slick", serif;
 }
 </style>

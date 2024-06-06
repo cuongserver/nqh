@@ -14,6 +14,7 @@ const vueFileRegex = /\.vue$/i;
 const tsFileRegex = /\.(ts|tsx)$/i;
 const sassFileRegex = /\.s[ac]ss$/i;
 const fontFileRegex = /.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/i;
+const inlineBase64UrlRegex = /^data:image\/.*$/i;
 const extForLaterRemoval = "forLaterRemoval";
 
 const __dirname = path.resolve();
@@ -85,7 +86,21 @@ const config = (_env) => {
                 publicPath: process.env.PUBLIC_PATH ?? "../",
               },
             },
-            "css-loader",
+            {
+              loader: "css-loader",
+              options: {
+                url: {
+                  filter:
+                    /**
+                     * @param {string} url
+                     * @param {string} _resourcePath
+                     */
+                    (url, _resourcePath) => {
+                      return !inlineBase64UrlRegex.test(url);
+                    },
+                },
+              },
+            },
             {
               loader: "postcss-loader",
               options: {
@@ -106,7 +121,7 @@ const config = (_env) => {
         },
         {
           exclude: [tsFileRegex, sassFileRegex, vueFileRegex, /node_modules/],
-          type: "asset",
+          type: "asset/resource",
         },
       ],
     },
