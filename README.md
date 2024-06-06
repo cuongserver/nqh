@@ -8,7 +8,7 @@ git clone https://github.com/cuongserver/nqh.git
 
 ## Prerequiste
 
-NodeJs version 21 and above
+NodeJs version 21 or above
 
 ## Install dependencies
 
